@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
+/blob-report/
 
 # next.js
 /.next/
@@ -20,11 +23,30 @@
 # production
 /build
 
+# framework and tooling caches
+/.turbo/
+/.cache/
+.eslintcache
+
 # misc
 .DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 *.pem
+*.key
+*.p12
+*.pfx
+*.swp
+*.swo
+*~
+
+# editors
+/.idea/
+/.vscode/
 
 # debug
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

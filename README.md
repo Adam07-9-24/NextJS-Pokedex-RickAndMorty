@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Laboratorio 10 con Next.js
 
-## Getting Started
+Proyecto académico que reúne una Pokédex y un directorio de personajes de Rick and Morty para demostrar App Router, SSG, SSR, CSR e ISR con Next.js 16.
 
-First, run the development server:
+## Aplicaciones
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- /pokemon: listado de los primeros 151 Pokémon.
+- /pokemon/[name]: detalle estático de cada Pokémon.
+- /rick-and-morty: estadísticas almacenadas, búsqueda cliente y listado paginado renderizado en servidor.
+- /rick-and-morty/[id]: detalle estático de cada personaje disponible en la API.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologías
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 16.4.3 con App Router y Cache Components.
+- React 19 y TypeScript estricto.
+- Tailwind CSS 4.
+- React Icons.
+- PokeAPI.
+- The Rick and Morty API.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Renderizado y caché
 
-## Learn More
+La Pokédex conserva una revalidación de 24 horas. Rick and Morty usa un perfil de caché de 10 días mediante "use cache" y cacheLife, con expiración posterior a la revalidación.
 
-To learn more about Next.js, take a look at the following resources:
+En /rick-and-morty:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Las estadísticas generales se almacenan y se incluyen en la salida estática.
+- El listado paginado utiliza una consulta sin caché dentro de Suspense para renderizarse en el servidor.
+- La búsqueda es un Client Component con useState, useEffect, debounce de 300 ms y AbortController.
+- Los detalles se generan estáticamente para todos los IDs devueltos por la API.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Desarrollo
 
-## Deploy on Vercel
+Ejecutar npm run dev y abrir http://localhost:3000.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Verificaciones
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- npm run lint
+- node_modules\.bin\tsc.cmd --noEmit
+- npm run build
+- npm start
+
+## Despliegue posterior
+
+El proyecto no requiere variables de entorno ni secretos. Está preparado para importarse posteriormente en Vercel mediante un repositorio Git, pero este repositorio no se publica ni despliega automáticamente.
